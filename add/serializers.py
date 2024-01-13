@@ -23,15 +23,26 @@ class AdsSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('id',)
 
-# class OrderItemSerializer(serializers.ModelSerializer):
-#     categories = CategorySerializer(many=True,read_only=True)
-#     class Meta:
-#         model = OrderItem
-#         fields = (
-#             'name',
-#             'image',
-#             'content',
-#             'price',
-#             'status',
-#         )
-#         read_only_fields = ('id',)
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = (
+            'all_products',
+            'all_price',
+            'user'
+        )
+        read_only_fields = ('id',)
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    baskets = OrderSerializer(many=True,read_only=True)
+    class Meta:
+        model = OrderItem
+        fields = (
+            'baskets',
+            'product',
+            'quantity',
+            'narx',
+            'xaridnarx'
+        )
+        read_only_fields = ('id',)

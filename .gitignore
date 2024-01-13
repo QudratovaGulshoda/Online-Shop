@@ -88,3 +88,5 @@ local_settings.py
 staticfiles
 db.sqlite3
 main.py
+.idea
+media
